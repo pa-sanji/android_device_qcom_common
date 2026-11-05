@@ -25,6 +25,10 @@ SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += \
 # AOSPA-QCOM Specific Required SEPolicy
 ifneq ($(AOSPA_BUILD),)
     SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += \
-        $(COMMON_SEPOLICY_PATH)/aospa/private \
-        $(COMMON_SEPOLICY_PATH)/pixel/private
+        $(COMMON_SEPOLICY_PATH)/aospa/private
+
+    ifneq ($(TARGET_DISABLES_GMS), true)
+        SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += \
+            $(COMMON_SEPOLICY_PATH)/pixel/private
+    endif
 endif

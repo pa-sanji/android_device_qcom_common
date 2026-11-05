@@ -1,2 +1,7 @@
-# Add dspservice to hwservice_manager and allow it to be discovered
-hal_attribute_hwservice(vendor_hal_dspmanager, vendor_hal_dspmanager_hwservice)
+# Legacy HIDL DSP discovery is for regular clients. Isolated compute uses AIDL.
+allow { vendor_hal_dspmanager_client -isolated_app_all } vendor_hal_dspmanager_hwservice:hwservice_manager find;
+add_hwservice(vendor_hal_dspmanager_server, vendor_hal_dspmanager_hwservice)
+
+build_test_only(`
+  neverallow { domain -vendor_hal_dspmanager_client -vendor_hal_dspmanager_server } vendor_hal_dspmanager_hwservice:hwservice_manager find;
+')

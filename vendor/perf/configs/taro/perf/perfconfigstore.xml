@@ -66,6 +66,7 @@ ________________________________________________________________________________
                 <Prop Name="ro.vendor.perf.lgl" Value="true" Target="diwali" SkewType="10"/>
                 <Prop Name="vendor.perf.enable_gplaf_hw" Value="false" Target="diwali" />
                 <Prop Name="ro.vendor.perf.dplh" Value="false" Target="diwali" />
+                <Prop Name="vendor.perf.expensive_rendering" Value="1" Target="ukee" />
 
                 <!--System Properties -->
                 <Prop Name="ro.lmk.kill_heaviest_task_dup" Value="true" />
@@ -147,6 +148,8 @@ ________________________________________________________________________________
                 <Prop Name="ro.vendor.use_perf_hal_for_preferredapps" Value="true" />
                 <Prop Name="vendor.prefapps.pkg_retention_mins" Value="28800" />
                 <Prop Name="vendor.prefapps.last_launch_threshold" Value="21600" />
+
+                <Prop Name="vendor.perf.expensive_rendering" Value="1" />
 
     </PerfConfigs>
 </PerfConfigsStore>

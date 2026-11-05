@@ -8,6 +8,9 @@ PRODUCT_SOONG_NAMESPACES += \
 
 TARGET_PERF_COMPONENT_VARIANT := perf
 
+# Devices that ship their stock vendor perf stack skip the configs and
+# blobs below, keeping only the properties.
+ifneq ($(TARGET_PROVIDES_QTI_PERF_BLOBS),true)
 # Configs
 # Use the configs for TARGET_BOARD_PLATFORM unless otherwise specified
 ifeq ($(TARGET_BOARD_PLATFORM)$(TARGET_BOARD_SUFFIX),bengal_515)
@@ -19,6 +22,7 @@ endif
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(QCOM_COMMON_PATH)/vendor/perf/configs/common,$(TARGET_COPY_OUT_VENDOR)/etc) \
     $(call find-copy-subdir-files,*,$(QCOM_COMMON_PATH)/vendor/perf/configs/$(TARGET_PERF_DIR),$(TARGET_COPY_OUT_VENDOR)/etc)
+endif
 
 # Disable the poweropt service for <5.4 platforms.
 ifneq (,$(filter 4.14 4.19, $(TARGET_KERNEL_VERSION)))
@@ -53,4 +57,6 @@ PRODUCT_VENDOR_PROPERTIES += \
     log.tag.vendor.qti.hardware.servicetrackeraidl-service=E
 
 # Get non-open-source specific aspects
+ifneq ($(TARGET_PROVIDES_QTI_PERF_BLOBS),true)
 $(call inherit-product-if-exists, vendor/qcom/common/vendor/perf/perf-vendor.mk)
+endif

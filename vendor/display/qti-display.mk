@@ -52,7 +52,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.game_default_frame_rate
 else
 # Properties for 5.10+ targets
 PRODUCT_ODM_PROPERTIES += \
-    ro.surface_flinger.clear_slots_with_set_layer_buffer=true
+    ro.surface_flinger.clear_slots_with_set_layer_buffer?=true
 endif
 
 # Properties for <4.19 targets

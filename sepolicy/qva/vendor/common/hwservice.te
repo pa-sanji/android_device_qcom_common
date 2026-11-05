@@ -6,4 +6,6 @@ type vendor_hal_qseecom_hwservice, hwservice_manager_type, protected_hwservice;
 type vendor_hal_qccvndhal_hwservice , hwservice_manager_type, protected_hwservice;
 type vendor_wifidisplayhalservice_hwservice , hwservice_manager_type, protected_hwservice;
 type vendor_hal_imsfactory_hwservice, hwservice_manager_type, protected_hwservice;
-type vendor_hal_iop_hwservice, hwservice_manager_type, protected_hwservice;
+
+# Legacy IOP context remains in hwservice_contexts for the inherited prebuilt.
+type vendor_hal_iop_hwservice, hwservice_manager_type;

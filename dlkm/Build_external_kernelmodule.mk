@@ -183,6 +183,7 @@ $(MODULE_KP_COMBINED_TARGET): inter_dir      := $(call intermediates-dir-for,DLK
 $(MODULE_KP_COMBINED_TARGET): ko_dirs        := $(LOCAL_MODULE_KO_DIRS)
 $(MODULE_KP_COMBINED_TARGET): platform       := $(TARGET_BOARD_PLATFORM)
 $(MODULE_KP_COMBINED_TARGET): subtarget_re   := $(LOCAL_MODULE_DDK_SUBTARGET_REGEX)
+$(MODULE_KP_COMBINED_TARGET): module_build_jobs := $(KERNEL_MODULE_BUILD_JOBS)
 $(MODULE_KP_COMBINED_TARGET): extra_args     := $(LOCAL_MODULE_DDK_EXTRA_ARGS)
 $(MODULE_KP_COMBINED_TARGET): $(MODULE_KP_COMMON_TARGET) $(sort $(foreach m,$(KBUILD_REQUIRED_KOS),$(call intermediates-dir-for,DLKM,$m)/Module.symvers))
 	export ANDROID_BUILD_TOP=$$(pwd) ; export KP_OUT_DIR=$$(cd $(KP_DLKM_INTERMEDIATE)/kernel_platform ; pwd) ; \
@@ -191,6 +192,7 @@ $(MODULE_KP_COMBINED_TARGET): $(MODULE_KP_COMMON_TARGET) $(sort $(foreach m,$(KB
 	    OUT_DIR=$${KP_OUT_DIR} \
 	    KERNEL_KIT=$${ANDROID_BUILD_TOP}/$(KERNEL_PREBUILT_DIR) \
 	    ENABLE_DDK_BUILD=$(ddk_build) \
+	    KERNEL_MODULE_BUILD_JOBS="$(module_build_jobs)" \
 	    ALLOW_UNSAFE_DDK_HEADERS=$(unsafe_hdrs) \
 	    INTERMEDIATE_DIR=$${ANDROID_BUILD_TOP}/$(inter_dir) \
 	    KO_DIRS="$(ko_dirs)" \
