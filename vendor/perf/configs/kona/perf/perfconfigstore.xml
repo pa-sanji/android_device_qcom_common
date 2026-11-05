@@ -56,6 +56,13 @@ property Name is called. -->
                 <Prop Name="vendor.prefapps.last_launch_threshold" Value="21600" />
 
                 <!-- AOSPA Edit: Enable Expensive Rendering -->
-                <Prop Name="vendor.perf.expensive_rendering" Value="1" />
+                <!-- kona perfservice has no 0x10A5 boost (only taro/cape/ukee
+                     define it). With this enabled the PowerHAL calls
+                     perf_hint(0x10A5) on every ER toggle and perfservice
+                     returns -1, logging
+                     "Failed to acquire lock for hint_id: 10A5".
+                     Expensive rendering is still boosted by the PowerHAL's
+                     LaminarController GPU floor, so keep the QTI hint off. -->
+                <Prop Name="vendor.perf.expensive_rendering" Value="0" />
     </PerfConfigs>
 </PerfConfigsStore>
