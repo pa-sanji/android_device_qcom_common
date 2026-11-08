@@ -10,6 +10,7 @@ function write_irq_affinity() {
     # $2 = cpu id
     irq_dir="$(dirname /proc/irq/*/$1)"
     [ -d "$irq_dir" ] && echo $2 > "${irq_dir}/smp_affinity_list"
+    return 0
 }
 
 # IRQ Tuning
@@ -26,3 +27,5 @@ write_irq_affinity kgsl-3d0 1
 
 # IRQ Tuning for MDSS targets
 write_irq_affinity MDSS 2
+
+exit 0

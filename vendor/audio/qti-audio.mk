@@ -58,10 +58,13 @@ PRODUCT_PACKAGES += \
     libspkrprot \
     libssrec \
     libtinycompress \
-    libvolumelistener \
     sound_trigger.primary.$(TARGET_BOARD_PLATFORM) \
     vendor.qti.hardware.pal@1.0.vendor \
     vendor.qti.hardware.AGMIPC@1.0.vendor
+
+ifneq ($(TARGET_USES_STOCK_AUDIO_HAL),true)
+PRODUCT_PACKAGES += libvolumelistener
+endif
 
 # Permissions
 PRODUCT_COPY_FILES += \
