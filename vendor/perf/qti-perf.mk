@@ -38,7 +38,7 @@ endif
 
 # Properties
 PRODUCT_VENDOR_PROPERTIES += \
-    ro.vendor.perf-hal.ver=3.0 \
+    ro.vendor.perf-hal.ver=$(if $(TARGET_PROVIDES_QTI_PERF_BLOBS),2.2,3.0) \
     ro.vendor.extension_library=libqti-perfd-client.so \
     ro.vendor.perf.scroll_opt=false \
     ro.vendor.qspm.enable=false \
